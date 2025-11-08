@@ -19,10 +19,9 @@ const style  = {
 
 const Todo: React.FC<TodoProps> = React.memo(({ todo}) => {
 
-    const {deleteTodo,editTodo}  = useTodoContext();
+  const {deleteTodo,editTodo}  = useTodoContext();
 
-   
-    
+  
   return (
     <div style={style}>
       <p>{todo.ct}</p>

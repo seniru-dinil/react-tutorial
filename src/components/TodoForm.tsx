@@ -9,7 +9,7 @@ const TodoForm = () => {
       if(selectedTodo){
         setInput(selectedTodo.ct);
       }
-  },[selectedTodo])
+  },[selectedTodo]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
