@@ -11,7 +11,8 @@ interface TodoContextTypes {
   selectedTodo:TypeTodo | undefined;
   addTodo: (todo: TypeTodo) => void;
   deleteTodo: (id: string) => void;
-  editTodo: (todo:TypeTodo) => void;
+  editTodo: (todo:TypeTodo ) => void;
+  setTodo: (todo:TypeTodo | undefined) => void;
 }
 
 const TodoContext = createContext<TodoContextTypes>({
@@ -22,6 +23,8 @@ const TodoContext = createContext<TodoContextTypes>({
   deleteTodo: (id) => {},
   //@ts-ignore
   editTodo:(todo) => {},
+  //@ts-ignore
+  setTodo:(todo) => {},
   todos: [],
 });
 
@@ -40,7 +43,11 @@ const TodoContextProvider: React.FC<TodoContextProviderProps> = ({
   };
 
   const editTodo = (todo:TypeTodo) => {        
-        setSelectedTodo(todo);
+    setTodos(prev => prev.map(t => t.id === todo.id ? (todo) : t));
+  }
+
+  const setTodo = (todo:TypeTodo | undefined) => {
+        setSelectedTodo(todo);    
   }
 
   return (
@@ -50,7 +57,8 @@ const TodoContextProvider: React.FC<TodoContextProviderProps> = ({
         addTodo,
         deleteTodo,
         editTodo,
-        selectedTodo
+        selectedTodo,
+        setTodo
       }}
     >
       {children}
