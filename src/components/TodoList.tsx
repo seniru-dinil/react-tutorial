@@ -7,6 +7,8 @@ import { useTodoContext } from "../contexts/TodoContextProvider";
 const TodoList = React.memo(() => {
 
     const {todos:todoList} = useTodoContext();
+
+    console.log('todolist')
     
     return (
         <div className="max-w-md mx-auto mt-4 p-4">

@@ -9,6 +9,8 @@ interface TodoProps {
 
 const Todo: React.FC<TodoProps> = React.memo(({ todo}) => {
   const {deleteTodo,setTodo}  = useTodoContext();
+
+  console.log('todo')
   
   return (
     <div className="flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm mb-2 group hover:shadow-md transition-shadow">

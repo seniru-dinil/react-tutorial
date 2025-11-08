@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useTodoContext } from "../contexts/TodoContextProvider";
 
 const TodoForm = () => {
@@ -6,7 +6,7 @@ const TodoForm = () => {
   const [input, setInput] = useState<string>('');
   const [action,setAction] = useState<'add' | 'edit'>('add');
   
-
+  console.log('todoform')
   useEffect(()=>{
       if(selectedTodo){
         setAction('edit');
@@ -17,11 +17,11 @@ const TodoForm = () => {
       }
   },[selectedTodo]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange =useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
-  };
+  },[]);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = useCallback(()=>(e: any) => {
     e.preventDefault();    
     if (input.trim() === "") {
       return;
@@ -39,7 +39,7 @@ const TodoForm = () => {
       setTodo(undefined);
     }
     
-  };
+  },[selectedTodo]) ;
 
   return (
     <form className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
@@ -64,4 +64,4 @@ const TodoForm = () => {
   );
 };
 
-export default TodoForm;
+export default React.memo(TodoForm);
