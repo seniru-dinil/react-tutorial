@@ -1,6 +1,11 @@
 import React from "react";
 
-const Alert:React.FC<{alert:any}> = ({alert}) => {
+export type TypeAlert = {
+    title:string,
+    message:string,
+};
+
+const Alert:React.FC<{alert:TypeAlert}> = ({alert}) => {
  
     
   return (

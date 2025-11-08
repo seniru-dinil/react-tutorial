@@ -1,12 +1,12 @@
 import { createContext, useContext, useRef, useState } from "react";
-import Alert from "../components/Alert";
+import Alert, { type TypeAlert } from "../components/Alert";
 
 interface AlertContextProviderProps {
   children: React.ReactNode;
 }
 
 interface AlertContextTypes {
-  showAlert: (config: any) => void;
+  showAlert: (config: TypeAlert) => void;
   closeAlert: () => void;
 }
 
@@ -22,9 +22,9 @@ const AlertContextProvider: React.FC<AlertContextProviderProps> = ({
 
     const [open,setOpen] = useState<boolean>(false);
     const timeoutRef = useRef<undefined | number>(undefined);
-    const [alert,setAlert] = useState<any>(undefined);
+    const [alert,setAlert] = useState<TypeAlert | undefined>(undefined);
 
-    const showAlert = (config:any) => {
+    const showAlert = (config:TypeAlert) => {
         clearTimeout(timeoutRef.current);
         setOpen(true);
         setAlert(config);
@@ -45,7 +45,7 @@ const AlertContextProvider: React.FC<AlertContextProviderProps> = ({
         closeAlert
     }}>    
     {children}
-    {open && <Alert alert={alert}/>}    
+    {open && <Alert alert={alert as TypeAlert}/>}    
     </AlertContext.Provider>
   );
 };
