@@ -19,14 +19,16 @@ const style  = {
 
 const Todo: React.FC<TodoProps> = React.memo(({ todo}) => {
 
-    const {deleteTodo}  = useTodoContext();
+    const {deleteTodo,editTodo}  = useTodoContext();
+
+   
     
   return (
     <div style={style}>
       <p>{todo.ct}</p>
       <input type="checkbox" readOnly checked={todo.done} />
       <button onClick={() => deleteTodo(todo.id)}>delete</button>
-      <button>edit</button>
+      <button onClick={() => editTodo(todo)}>edit</button>
     </div>
   );
 });

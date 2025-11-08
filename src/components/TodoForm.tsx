@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTodoContext } from "../contexts/TodoContextProvider";
 
 const TodoForm = () => {
-  const [input, setInput] = useState<string>("");
-  const { addTodo } = useTodoContext();
+  const { addTodo ,selectedTodo } = useTodoContext();
+  const [input, setInput] = useState<string>('');
+
+  useEffect(()=>{
+      if(selectedTodo){
+        setInput(selectedTodo.ct);
+      }
+  },[selectedTodo])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
