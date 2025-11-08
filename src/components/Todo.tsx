@@ -1,6 +1,7 @@
 import React from "react";
 import type { TypeTodo } from "../types/todo";
 import { useTodoContext } from "../contexts/TodoContextProvider";
+import { useAlertContext } from "../contexts/AlertContextProvider";
 
 interface TodoProps {
   todo: TypeTodo;  
@@ -9,6 +10,15 @@ interface TodoProps {
 
 const Todo: React.FC<TodoProps> = React.memo(({ todo}) => {
   const {deleteTodo,setTodo}  = useTodoContext();
+  const {showAlert} = useAlertContext();
+
+  const handleDelete = (id:string) => {
+      deleteTodo(id);
+      showAlert({
+        title:'todo deleted.',
+        message:'Todo deleted success.'
+      });
+  }
   
   return (
     <div className="flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm mb-2 group hover:shadow-md transition-shadow">
@@ -29,7 +39,7 @@ const Todo: React.FC<TodoProps> = React.memo(({ todo}) => {
           Edit
         </button>
         <button 
-          onClick={() => deleteTodo(todo.id)}
+          onClick={() => handleDelete(todo.id)}
           className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
         >
           Delete

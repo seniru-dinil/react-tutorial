@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useTodoContext } from "../contexts/TodoContextProvider";
+import { useAlertContext } from "../contexts/AlertContextProvider";
 
 const TodoForm = () => {
   const { addTodo ,selectedTodo ,editTodo ,setTodo} = useTodoContext();
+  const {showAlert} = useAlertContext();
   const [input, setInput] = useState<string>('');
   const [action,setAction] = useState<'add' | 'edit'>('add');
   
@@ -30,6 +32,10 @@ const TodoForm = () => {
     if(action === 'add'){
     addTodo({ id: new Date().toISOString(), ct: input.trim(), done: false });
     setInput("");
+    showAlert({
+      title:'todo added',
+      message:'Todo added success.'
+    });
     }else if(action === 'edit' && selectedTodo){
       editTodo({
         id:selectedTodo.id,
@@ -37,6 +43,10 @@ const TodoForm = () => {
         ct:input
       });
       setTodo(undefined);
+      showAlert({
+      title:'todo edited',
+      message:'Todo edited success.'
+    });
     }
     
   };
