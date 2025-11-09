@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
-import Alert, { type TypeAlert } from "../components/Alert";
+import Alert from "../components/Alert";
+import type {TypeAlert} from '../types'
 
 interface AlertContextProviderProps {
   children: React.ReactNode;

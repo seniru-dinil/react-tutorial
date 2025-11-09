@@ -1,6 +1,7 @@
 import type React from "react";
-import type { TypeTodo } from "../types/todo";
+
 import { createContext, useState } from "react";
+import type { TypeTodo } from "../types";
 
 interface TodoContextProviderProps {
   children: React.ReactNode;

@@ -1,5 +1,4 @@
-import TodoForm from "./components/TodoForm";
-import TodoList from "./components/TodoList";
+import { TodoForm, TodoList } from "./components";
 import AlertContextProvider from "./contexts/AlertContextProvider";
 import TodoContextProvider from "./contexts/TodoContextProvider";
 

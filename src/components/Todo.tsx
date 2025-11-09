@@ -1,6 +1,6 @@
 import React from "react";
-import type { TypeTodo } from "../types/todo";
 import { useAlert, useTodo } from "../hooks";
+import type { TypeTodo } from "../types";
 
 interface TodoProps {
   todo: TypeTodo;  

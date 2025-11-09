@@ -1,10 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import type { TypeAlert } from "../types";
 
-
-export type TypeAlert = {    
-    title:string,
-    message:string,
-};
 
 const Alert:React.FC<{alert:TypeAlert | undefined}> = ({alert}) => {
   
@@ -17,7 +13,7 @@ const Alert:React.FC<{alert:TypeAlert | undefined}> = ({alert}) => {
         setOpen(true);
         timeoutRef.current = setTimeout(()=>{
             setOpen(false);              
-        },3000);
+        },1000);
     }
     return () => clearTimeout(timeoutRef.current);
 
