@@ -1,12 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useTodoContext } from "../contexts/TodoContextProvider";
+import { useEffect, useState } from "react";
+import { useAlert, useTodo } from "../hooks";
 
 const TodoForm = () => {
-  const { addTodo ,selectedTodo ,editTodo ,setTodo} = useTodoContext();
+  const { addTodo ,selectedTodo ,editTodo ,setTodo} = useTodo();
+  const {showAlert} = useAlert();
   const [input, setInput] = useState<string>('');
   const [action,setAction] = useState<'add' | 'edit'>('add');
   
-  console.log('todoform')
+
   useEffect(()=>{
       if(selectedTodo){
         setAction('edit');
@@ -17,11 +18,11 @@ const TodoForm = () => {
       }
   },[selectedTodo]);
 
-  const handleInputChange =useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
-  },[]);
+  };
 
-  const handleSubmit = useCallback(()=>(e: any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();    
     if (input.trim() === "") {
       return;
@@ -30,6 +31,10 @@ const TodoForm = () => {
     if(action === 'add'){
     addTodo({ id: new Date().toISOString(), ct: input.trim(), done: false });
     setInput("");
+    showAlert({
+      title:'todo added',
+      message:'Todo added success.'
+    });
     }else if(action === 'edit' && selectedTodo){
       editTodo({
         id:selectedTodo.id,
@@ -37,9 +42,13 @@ const TodoForm = () => {
         ct:input
       });
       setTodo(undefined);
+      showAlert({
+      title:'todo edited',
+      message:'Todo edited success.'
+    });
     }
     
-  },[selectedTodo]) ;
+  };
 
   return (
     <form className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
@@ -64,4 +73,4 @@ const TodoForm = () => {
   );
 };
 
-export default React.memo(TodoForm);
+export default TodoForm;
