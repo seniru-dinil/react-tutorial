@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { useTodoContext } from "../contexts/TodoContextProvider";
-import { useAlertContext } from "../contexts/AlertContextProvider";
+import { useAlert, useTodo } from "../hooks";
 
 const TodoForm = () => {
-  const { addTodo ,selectedTodo ,editTodo ,setTodo} = useTodoContext();
-  const {showAlert} = useAlertContext();
+  const { addTodo ,selectedTodo ,editTodo ,setTodo} = useTodo();
+  const {showAlert} = useAlert();
   const [input, setInput] = useState<string>('');
   const [action,setAction] = useState<'add' | 'edit'>('add');
   

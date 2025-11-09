@@ -1,4 +1,4 @@
-import { createContext, useContext, useRef, useState } from "react";
+import { createContext, useRef, useState } from "react";
 import Alert, { type TypeAlert } from "../components/Alert";
 
 interface AlertContextProviderProps {
@@ -53,7 +53,7 @@ const AlertContextProvider: React.FC<AlertContextProviderProps> = ({
 export default AlertContextProvider;
 
 
-export const useAlertContext = () => {
-    const alertContext = useContext(AlertContext);
-    return alertContext;
+export {
+  AlertContext
 }
+

@@ -1,7 +1,6 @@
 import React from "react";
 import type { TypeTodo } from "../types/todo";
-import { useTodoContext } from "../contexts/TodoContextProvider";
-import { useAlertContext } from "../contexts/AlertContextProvider";
+import { useAlert, useTodo } from "../hooks";
 
 interface TodoProps {
   todo: TypeTodo;  
@@ -9,8 +8,9 @@ interface TodoProps {
 
 
 const Todo: React.FC<TodoProps> = React.memo(({ todo}) => {
-  const {deleteTodo,setTodo}  = useTodoContext();
-  const {showAlert} = useAlertContext();
+  
+  const {deleteTodo,setTodo}  = useTodo();  
+  const {showAlert} = useAlert();
 
   const handleDelete = (id:string) => {
       deleteTodo(id);

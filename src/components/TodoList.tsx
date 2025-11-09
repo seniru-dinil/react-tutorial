@@ -1,12 +1,12 @@
 import React from "react";
 import Todo from "./Todo";
-import { useTodoContext } from "../contexts/TodoContextProvider";
+import { useTodo } from "../hooks";
 
 
 
 const TodoList = React.memo(() => {
 
-    const {todos:todoList} = useTodoContext();
+    const {todos:todoList} = useTodo();
     
     return (
         <div className="max-w-md mx-auto mt-4 p-4">

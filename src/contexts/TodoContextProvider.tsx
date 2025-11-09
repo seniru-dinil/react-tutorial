@@ -1,6 +1,6 @@
 import type React from "react";
 import type { TypeTodo } from "../types/todo";
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 
 interface TodoContextProviderProps {
   children: React.ReactNode;
@@ -66,12 +66,8 @@ const TodoContextProvider: React.FC<TodoContextProviderProps> = ({
   );
 };
 
-
-
-export const useTodoContext = () => {
-    const todoContext = useContext(TodoContext);
-    if(!todoContext) console.log('todo context is undefined!');
-    return todoContext;
+export {
+  TodoContext
 }
 
 export default TodoContextProvider;
